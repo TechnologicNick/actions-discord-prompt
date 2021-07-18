@@ -1,16 +1,17 @@
 const core = require('@actions/core');
-const Discord = require("discord.js");
-const Prompt = require("./prompt");
+const { Client, Intents } = require("discord.js");
+const Prompts = require("./prompts");
 
-const client = new Discord.Client();
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 
 const prompts = JSON.parse(core.getInput("PROMPTS", { required: true }));
 let currentPromptIndex = 0;
 
 function nextPrompt() {
-    let prompt = Prompt.fromObject(prompts[currentPromptIndex++]);
+    let prompt = Prompts.fromObject(client, prompts[currentPromptIndex++]);
 
     console.log("Handling prompt", prompt);
+    prompt.registerCallbacks(client);
 }
 
 client.on("ready", () => {
