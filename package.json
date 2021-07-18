@@ -1,0 +1,16 @@
+{
+  "name": "actions-discord-prompt",
+  "version": "1.0.0",
+  "description": "Uses a discord bot to prompt a value",
+  "main": "index.js",
+  "scripts": {
+    "test": "node -r dotenv/config test.js"
+  },
+  "author": "TechnologicNick",
+  "license": "ISC",
+  "dependencies": {
+    "@actions/core": "^1.4.0",
+    "discord.js": "^12.5.3",
+    "dotenv": "^10.0.0"
+  }
+}
