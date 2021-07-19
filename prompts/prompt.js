@@ -26,9 +26,7 @@ class Prompt {
     }
 
     createMessage(msgData) {
-        return Object.assign({}, msgData, {
-            embeds: msgData.embed ? [ new Discord.MessageEmbed(msgData.embed) ] : undefined
-        });
+        return msgData;
     }
 
     async sendMessage() {
