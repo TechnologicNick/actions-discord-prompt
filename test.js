@@ -7,9 +7,14 @@
     process.env.INPUT_PROMPTS = `[
         {
             "name": "code_2fa_command",
-            "title": "Please enter your two factor authentication code",
-            "description": "desc",
-            "color": 0,
+            "message": {
+                "content": null,
+                "embed": {
+                    "title": "Please enter your two factor authentication code",
+                    "description": "/2fa <code>",
+                    "color": 5793266
+                }
+            },
             "type": "COMMAND",
             "options": {
                 "name": "2fa",
@@ -20,16 +25,35 @@
                     "description": "The Steam Guard code",
                     "required": true
                 }]
+            },
+            "onSuccess": {
+                "content": null,
+                "embed": {
+                    "title": "Entered 2FA code",
+                    "color": 5763719
+                }
             }
         },
         {
             "name": "code_2fa_keypad",
-            "title": "Please enter your two factor authentication code",
-            "description": "desc",
-            "color": 0,
+            "message": {
+                "content": null,
+                "embed": {
+                    "title": "Please enter your two factor authentication code",
+                    "description": "/2fa <code>",
+                    "color": 5793266
+                }
+            },
             "type": "NUMPAD",
             "options": {
                 "length": 6
+            },
+            "onSuccess": {
+                "content": null,
+                "embed": {
+                    "title": "Entered 2FA code",
+                    "color": 5763719
+                }
             }
         }
     ]`;

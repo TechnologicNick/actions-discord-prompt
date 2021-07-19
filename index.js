@@ -8,10 +8,11 @@ const prompts = JSON.parse(core.getInput("PROMPTS", { required: true }));
 let currentPromptIndex = 0;
 
 function nextPrompt() {
-    let prompt = Prompts.fromObject(client, prompts[currentPromptIndex++]);
+    let prompt = Prompts.fromInfo(client, prompts[currentPromptIndex++]);
 
     console.log("Handling prompt", prompt);
-    prompt.registerCallbacks(client);
+    prompt.registerCallbacks();
+    prompt.sendMessage();
 }
 
 client.on("ready", () => {

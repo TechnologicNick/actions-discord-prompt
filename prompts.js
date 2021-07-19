@@ -5,10 +5,10 @@ const KeypadPrompt = require("./prompts/keypad");
 
 class Prompts {
 
-    static fromObject(client, obj) {
+    static fromInfo(client, info) {
         let promptConstructor = Prompt
 
-        switch (obj.type?.toUpperCase()) {
+        switch (info.type?.toUpperCase()) {
             case "COMMAND":
                 promptConstructor = CommandPrompt;
                 break;
@@ -16,14 +16,14 @@ class Prompts {
                 promptConstructor = KeypadPrompt;
                 break;
             default:
-                console.warn("Unknown prompt type:", obj.type);
+                console.warn("Unknown prompt type:", info.type);
                 break;
         }
 
         const guild = client.guilds.cache.get(core.getInput("DISCORD_GUILD"));
         const channel = guild.channels.cache.get(core.getInput("DISCORD_CHANNEL"));
 
-        return Object.assign(new promptConstructor(guild, channel), obj);
+        return new promptConstructor(client, guild, channel, info);
     }
 
 }

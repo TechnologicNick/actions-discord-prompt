@@ -1,12 +1,55 @@
+const Discord = require("discord.js");
+
 class Prompt {
 
-    constructor(guild, channel) {
+    /**
+     * 
+     * @param {Discord.Client} client 
+     * @param {Discord.Guild} guild 
+     * @param {Discord.TextChannel} channel 
+     */
+    constructor(client, guild, channel, info) {
+        this.client = client;
         this.guild = guild;
         this.channel = channel;
+        this.info = info;
+
+        this.name = this.info.name;
     }
 
-    async registerCallbacks(client) {
-        this.client = client;
+    async registerCallbacks() {
+        
+    }
+
+    async unregisterCallbacks() {
+
+    }
+
+    createMessage(msgData) {
+        return Object.assign({}, msgData, {
+            embeds: msgData.embed ? [ new Discord.MessageEmbed(msgData.embed) ] : undefined
+        });
+    }
+
+    async sendMessage() {
+        this.channel.send(this.createMessage(this.info.message));
+    }
+
+    /**
+     * @param {Discord.CommandInteraction} interaction 
+     */
+    async onSuccess(interaction) {
+        if (this.info.onSuccess) {
+            await interaction.reply(this.createMessage(this.info.onSuccess));
+        } else {
+            await interaction.reply({
+                embeds: [ new Discord.MessageEmbed({
+                    title: "Prompt entered",
+                    color: 5763719
+                }) ],
+                ephemeral: false
+            });
+        }
     }
 }
 
