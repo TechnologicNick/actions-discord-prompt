@@ -21,7 +21,7 @@
                 "description": "Please enter your two factor authentication code",
                 "options": [{
                     "name": "code",
-                    "type": "INTEGER",
+                    "type": "STRING",
                     "description": "The Steam Guard code",
                     "required": true
                 }]
