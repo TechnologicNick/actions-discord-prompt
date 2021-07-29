@@ -7,4 +7,4 @@ COPY . .
 
 RUN yarn install --production
 
-CMD [ "node", "index.js" ]
+CMD [ "node", "/app/index.js" ]
