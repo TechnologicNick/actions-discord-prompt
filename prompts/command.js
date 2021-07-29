@@ -28,6 +28,16 @@ class CommandPrompt extends Prompt {
         if (interaction.commandId !== this.command.id) return;
         
         await this.unregisterCallbacks();
+
+        let options = {}
+        for (let option of interaction.options._options) {
+            options[option.name] = option.value;
+        }
+
+        this.setOutput({
+            raw: interaction.options,
+            options: options
+        });
         
         await this.onSuccess(interaction);
     }

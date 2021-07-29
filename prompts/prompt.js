@@ -1,4 +1,5 @@
 const Discord = require("discord.js");
+const core = require("@actions/core");
 
 class Prompt {
 
@@ -48,6 +49,11 @@ class Prompt {
                 ephemeral: false
             });
         }
+    }
+
+    setOutput(output) {
+        core.setOutput(this.name, output);
+        console.log(`Set output for ${this.name} to`, output);
     }
 }
 
