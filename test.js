@@ -33,28 +33,6 @@
                     "color": 5763719
                 }]
             }
-        },
-        {
-            "name": "code_2fa_keypad",
-            "message": {
-                "content": null,
-                "embeds": [{
-                    "title": "Please enter your two factor authentication code",
-                    "description": "/2fa <code>",
-                    "color": 5793266
-                }]
-            },
-            "type": "NUMPAD",
-            "options": {
-                "length": 6
-            },
-            "onSuccess": {
-                "content": null,
-                "embeds": [{
-                    "title": "Entered 2FA code",
-                    "color": 5763719
-                }]
-            }
         }
     ]`;
 

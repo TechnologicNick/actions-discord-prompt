@@ -1,7 +1,6 @@
 const core = require("@actions/core");
 const Prompt = require("./prompts/prompt");
 const CommandPrompt = require("./prompts/command");
-const KeypadPrompt = require("./prompts/keypad");
 
 class Prompts {
 
@@ -11,9 +10,6 @@ class Prompts {
         switch (info.type?.toUpperCase()) {
             case "COMMAND":
                 promptConstructor = CommandPrompt;
-                break;
-            case "KEYPAD":
-                promptConstructor = KeypadPrompt;
                 break;
             default:
                 console.warn("Unknown prompt type:", info.type);
