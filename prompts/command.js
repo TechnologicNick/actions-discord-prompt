@@ -27,10 +27,12 @@ class CommandPrompt extends Prompt {
         if (!interaction.isCommand()) return;
         if (interaction.commandId !== this.command.id) return;
         
+        console.log(interaction);
+        
         await this.unregisterCallbacks();
 
         let options = {}
-        for (let option of interaction.options._options) {
+        for (let option of interaction.options._hoistedOptions) {
             options[option.name] = option.value;
         }
 
