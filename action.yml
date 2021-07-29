@@ -1,0 +1,21 @@
+name: "actions-discord-prompt"
+author: "TechnologicNick"
+description: "Use a discord bot to prompt values"
+
+inputs:
+  discord_token:
+    description: "Your discord bot token"
+    required: true
+  discord_guild:
+    description: "The snowflake of your discord server (guild)"
+    required: true
+  discord_channel:
+    description: "The snowflake of your discord server's channel"
+    required: true
+  prompts:
+    description: "A json array of prompts (see README.md for an example)"
+    required: true
+
+runs:
+  using: "node15"
+  main: "index.js"
