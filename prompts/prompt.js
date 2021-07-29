@@ -16,6 +16,8 @@ class Prompt {
         this.info = info;
 
         this.name = this.info.name;
+
+        this.finished = false;
     }
 
     async registerCallbacks() {
@@ -49,11 +51,26 @@ class Prompt {
                 ephemeral: false
             });
         }
+
+        this.finished = true;
+        this.waitFinishedResolve?.call(this.output);
     }
 
     setOutput(output) {
+        this.output = output;
         core.setOutput(this.name, output);
         console.log(`Set output for ${this.name} to`, output);
+    }
+
+    waitFinished() {
+        return new Promise((resolve, reject) => {
+            if (this.finished) {
+                resolve(this.output);
+            }
+
+            this.waitFinishedResolve = resolve;
+            this.waitFinishedReject = reject;
+        })
     }
 }
 
