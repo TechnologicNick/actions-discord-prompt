@@ -16,6 +16,7 @@
                 }]
             },
             "type": "COMMAND",
+            "maskOptions": true,
             "options": {
                 "name": "2fa",
                 "description": "Please enter your two factor authentication code",

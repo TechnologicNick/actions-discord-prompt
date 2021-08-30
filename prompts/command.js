@@ -7,7 +7,7 @@ class CommandPrompt extends Prompt {
         super.registerCallbacks();
 
         this.command = await this.guild.commands.create(this.info.options);
-        console.log("id", this.command.id);
+        console.log(`Registered guild command with id=${this.command.id}`);
 
         this.client.on("interactionCreate", this.onInteractionCreate.bind(this));
     }
@@ -16,6 +16,7 @@ class CommandPrompt extends Prompt {
         await super.unregisterCallbacks();
 
         await this.command.delete();
+        console.log("Deleted guild command")
 
         this.client.off("interactionCreate", this.onInteractionCreate);
     }
@@ -31,9 +32,19 @@ class CommandPrompt extends Prompt {
         
         await this.unregisterCallbacks();
 
+        if (this.info.maskOptions === undefined || this.info.maskOptions === true) {
+            console.log("Masking option values from the GitHub Actions log. Set <prompt>.maskOptions to false to disable this.");
+        } else {
+            console.log("Leaving option values in the GitHub Actions log. Set <prompt>.maskOptions to true to enable this.");
+        }
+
         let options = {}
         for (let option of interaction.options._hoistedOptions) {
             options[option.name] = option.value;
+
+            if (this.info.maskOptions === undefined || this.info.maskOptions === true) {
+                console.log(`::add-mask::${option.value}`);
+            }
         }
 
         this.setOutput({

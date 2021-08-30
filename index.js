@@ -10,7 +10,7 @@ let currentPromptIndex = 0;
 async function nextPrompt() {
     let prompt = Prompts.fromInfo(client, prompts[currentPromptIndex++]);
 
-    console.log("Handling prompt", prompt);
+    console.log("Handling prompt", prompt.info);
     await prompt.registerCallbacks();
     await prompt.sendMessage();
     await prompt.waitFinished();
